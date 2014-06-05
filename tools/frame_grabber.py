@@ -32,8 +32,9 @@ def copy_frames(src, dest, dataset_name, num_frames):
 
     with closing(h5py.File(dest, "w")) as hfile:
         dataset = hfile.create_dataset(dataset_name,
-                                       tuple(chain([num_frames],
-                                                   f1.shape)))
+                                       shape=tuple(chain([num_frames],
+                                                         f1.shape)),
+                                       dtype=f1.dtype)
 
         for idx, frame in enumerate(chain([f1], frames_iter)):
             dataset[idx] = frame
