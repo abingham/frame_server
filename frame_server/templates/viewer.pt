@@ -13,7 +13,7 @@
   </head>
 
   <body>
-    <img src="http://localhost:6543/frame/4" id="frame-image"></img>
+    <canvas id="frame" width="1000" height="400"></canvas>
     <input type="range" id="slider" min="0" max="${frame_count}"></input>
     <label id="slider-value">unset</label>
   </body>
@@ -24,9 +24,16 @@
      "input",
      function(event) {
        $("#slider-value").text(event.target.value);
-       $("#frame-image").src = "http://localhost:6543/frame/0";
-       $("#frame-image").attr({
-         src: "http://localhost:6543/frame/" + event.target.value});
+
+       var canvas = document.getElementById("frame");
+       var context = canvas.getContext("2d");
+       
+       var drawing = new Image();
+       drawing.onload = function() {
+	 context.drawImage(drawing, 0, 0);
+       }
+
+       drawing.src = "http://localhost:6543/frame/" + event.target.value
      });
   </script>
 </html>
