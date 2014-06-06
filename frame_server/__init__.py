@@ -1,12 +1,22 @@
+import logging
+
 import h5py
 from pyramid.config import Configurator
 
 
+log = logging.getLogger()
+
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
-    hfile = h5py.File('test.hdf5', 'r')
-    dset = hfile['foo/bar/baz']
+    h5_filename = settings['frames.filename']
+    dataset_name = settings['frames.dataset']
+
+    log.info('HDF5 filename: {}'.format(h5_filename))
+    log.info('HFD5 dataset: {}'.format(dataset_name))
+
+    hfile = h5py.File(h5_filename, 'r')
+    dset = hfile[dataset_name]
 
     config = Configurator(settings=settings)
 
