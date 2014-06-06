@@ -1,3 +1,6 @@
+'''A tool for converting movie files into HFD5 datasets.
+'''
+
 from contextlib import closing
 from itertools import chain, islice
 
@@ -27,6 +30,10 @@ def get_frames(source):
               default=1000,
               help='Number of frames to store.')
 def copy_frames(src, dest, dataset_name, num_frames):
+    """Copy up to ``num_frames`` frames from the movie file ``src`` and
+    put them into a data-set named ``dataset_name`` in the HDF5 file
+    ``dest``.
+    """
     frames_iter = iter(get_frames(src))
     f1 = next(frames_iter)
 
