@@ -14,7 +14,7 @@
 
   <body>
     <canvas id="frame" width="1000" height="400"></canvas>
-    <input type="range" id="slider" min="0" max="${frame_count}"></input>
+    <input type="range" id="slider" min="0" max="${frame_count - 1}"></input>
     <label id="slider-value">unset</label>
   </body>
 

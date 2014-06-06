@@ -1,5 +1,5 @@
 from contextlib import closing
-from itertools import chain
+from itertools import chain, islice
 
 import click
 import cv2
@@ -36,7 +36,7 @@ def copy_frames(src, dest, dataset_name, num_frames):
                                                          f1.shape)),
                                        dtype=f1.dtype)
 
-        for idx, frame in enumerate(chain([f1], frames_iter)):
+        for idx, frame in enumerate(islice(chain([f1], frames_iter), num_frames)):
             dataset[idx] = frame
 
 if __name__ == '__main__':
