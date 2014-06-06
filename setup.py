@@ -9,7 +9,10 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
 
 requires = [
-    # TODO: cv2, numpy, click, h5py
+    # You also need the opencv 'cv2' module. Just use anaconda.
+    'click',
+    'h5py',
+    'numpy',
     'pyramid',
     'pyramid_chameleon',
     'pyramid_debugtoolbar',
